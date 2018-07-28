@@ -19,6 +19,7 @@ class Search extends React.Component {
 		var idx = this.state.foundBooks.indexOf(book)
 		var updatedBooks = this.state.foundBooks
 		updatedBooks[idx].shelf = shelf
+		this.setState({ foundBooks: updatedBooks })
 		this.props.changeShelf(book, shelf)
 	}
 	
