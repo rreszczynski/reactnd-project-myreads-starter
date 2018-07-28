@@ -15,6 +15,13 @@ class Search extends React.Component {
 		foundBooks: []
 	}
 	
+	changeShelf = (book, shelf) => {
+		var idx = this.state.foundBooks.indexOf(book)
+		var updatedBooks = this.state.foundBooks
+		updatedBooks[idx].shelf = shelf
+		this.props.changeShelf(book, shelf)
+	}
+	
 	updateQuery = (query) => {
 			if(!query) {
 				this.setState({
@@ -54,7 +61,7 @@ class Search extends React.Component {
 			<div className="search-books-results">
 				<ol className="books-grid">
 					{this.state.foundBooks.map((book) => (
-						<Book key={book.id} book={book} changeShelf={this.props.changeShelf}/>
+						<Book key={book.id} book={book} changeShelf={this.changeShelf}/>
 					))} 
 				</ol>
 			</div>
