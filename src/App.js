@@ -8,7 +8,7 @@ import BookShelf from './BookShelf.js'
 
 class BooksApp extends React.Component {
 	state = {
-		books: []		
+		books: []
 	}	
 	
 	getAllBooks = () => {
@@ -26,51 +26,50 @@ class BooksApp extends React.Component {
 			this.getAllBooks()
 		})		
 	}
-	
-  render() {
-    return (
-		<div className="app">
-			{/* MAIN PAGE */}
-			<Route exact path='/' render={() => (
-				<div className="list-books">
-					<div className="list-books-title">
-						<h1>MyReads</h1>
-					</div>
-					<div className="list-books-content">
-						<div>
-							<BookShelf
-								bookShelfTilte='Currently Reading'
-								books={this.state.books.filter((book) => (book.shelf === 'currentlyReading'))}
-								changeShelf={this.bookChangeShelf}
-							/>
-							<BookShelf
-								bookShelfTilte='Want to Read'
-								books={this.state.books.filter((book) => (book.shelf === 'wantToRead'))}
-								changeShelf={this.bookChangeShelf}
-							/>
-							<BookShelf
-								bookShelfTilte='Read'
-								books={this.state.books.filter((book) => (book.shelf === 'read'))}
-								changeShelf={this.bookChangeShelf}
-							/>
+	render() {
+		return (
+			<div className="app">
+				{/* MAIN PAGE */}
+				<Route exact path='/' render={() => (
+					<div className="list-books">
+						<div className="list-books-title">
+							<h1>MyReads</h1>
+						</div>
+						<div className="list-books-content">
+							<div>
+								<BookShelf
+									bookShelfTilte='Currently Reading'
+									books={this.state.books.filter((book) => (book.shelf === 'currentlyReading'))}
+									changeShelf={this.bookChangeShelf}
+								/>
+								<BookShelf
+									bookShelfTilte='Want to Read'
+									books={this.state.books.filter((book) => (book.shelf === 'wantToRead'))}
+									changeShelf={this.bookChangeShelf}
+								/>
+								<BookShelf
+									bookShelfTilte='Read'
+									books={this.state.books.filter((book) => (book.shelf === 'read'))}
+									changeShelf={this.bookChangeShelf}
+								/>
+							</div>
+						</div>
+						<div className="open-search">	
+							<Link to='/search'></Link>
 						</div>
 					</div>
-					<div className="open-search">	
-						<Link to='/search'></Link>
-					</div>
-				</div>
-			)}/>
+				)}/>
 				
-			{/* SEARCH PAGE */}
-			<Route path='/search' render={() => (
-				<Search
-					books = {this.state.books}
-					changeShelf = {this.bookChangeShelf}
-				/>
-			)}/>
-		</div>
-    )
-  }
+				{/* SEARCH PAGE */}
+				<Route path='/search' render={() => (
+					<Search
+						books = {this.state.books}
+						changeShelf = {this.bookChangeShelf}
+					/>
+				)}/>
+			</div>
+		)
+	}
 }
 
 export default BooksApp
